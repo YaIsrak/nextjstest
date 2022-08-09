@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Head from 'next/head';
 import Navbar from '../components/nav';
 
@@ -13,9 +14,16 @@ export default function Home({ posts }) {
 			<main className='container'>
 				<div className='row'>
 					{posts.map((post) => (
-						<div key={post.id} className='col-3'>
-							<h1> {post.title} </h1>
-							<p> {post.body} </p>
+						<div key={post.id} className='col-3 card'>
+							<div className='card-body'>
+								<h1 className='display-6 card-title'>
+									{post.title.substring(0, 10)}...
+								</h1>
+								<p> {post.body.substring(0, 20)}... </p>
+								<Link href={`/post/${post.id}`}>
+									<button className='btn btn-primary'>Click me</button>
+								</Link>
+							</div>
 						</div>
 					))}
 				</div>
